@@ -3097,8 +3097,7 @@ break
             }
 break
   case 'allmenu':
-      case 'менюшка':
-          case 'menuall': {
+      case 'менюшка': {
   	anu = `┏━━━━━━━━━━━━━━━━━━┓
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
 ┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
@@ -3245,10 +3244,20 @@ break
 ║├⬡ ${prefix}antiwame [on/off]
 ║╰——————————
 ╚═══════════`
-    const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                }), { userJid: m.chat })
-                XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
-            }
+const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                templateMessage: {
+                    hydratedTemplate: {
+                        hydratedContentText: anu,
+                        locationMessage: {},
+                        hydratedButtons: [{
+                            urlButton: {
+                            }
+                        }]
+                    }
+                }
+            }), { userJid: m.chat })
+            XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+        }
 break
 case 'tqtt': 
 reply(`Thanks to
