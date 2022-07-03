@@ -1,5 +1,5 @@
 {
-  "name": "GATABOT",
+  "name": "zae",
   "version": "10.8.9",
   "description": "Subscribete a The Shadow Borkers - Bot (≧▽≦)",
   "depecrated": false,
@@ -23,7 +23,7 @@
     "Games-wabot",
     "wabot-aq"
   ],
-  "homepage": "https://github.com/BochilGaming/games-wabot",
+  "homepage": "https://github.com/odinoky/zae",
   "author": {
     "name": "BochilGaming"
   },
@@ -32,7 +32,7 @@
     "url": "git+https://github.com/Nurutomo/wabot-aq.git"
   },
   "bugs": {
-    "url": "https://github.com/BochilGaming/games-wabot/issues"
+    "url": "https://github.com/odinoky/zae/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
