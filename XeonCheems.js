@@ -2767,10 +2767,8 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
-break
-case 'list':
-case 'menu': 
-case 'help':{
+brea
+case 'менюка':{
 timestampe = speed();
 latensie = speed() - timestampe
 anu = ``
@@ -2801,28 +2799,11 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ┗━━━━━━━━━━━━━━━━━━┛`,
                             hydratedButtons: [{
                                 urlButton: {
-                                    displayText: 'wame📍',
-                                    url: 'https://api.whatsapp.com/send/?phone=51918303426&text=hola%20xd'
-                                }
-                            }, {
-                            	urlButton: {
-                                displayText: 'Web App🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
                                 }
                             }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '🍒List Menu🍒',
-                                    id: `${prefix}command`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3482,14 +3463,7 @@ break
   case 'allmenu':
       case 'all':
           case 'menuall': {
-  	anu = `┏━━━━━━━━━━━━━━━━━━┓
-┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
-┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
-┗━━━━━━━━━━━━━━━━━━┛
-|-------------------------|
-⮕ PAGINA WEB:  ☷
-⮕ https://appweb-darlyn.vercel.app 
-|-------------------------|
+  	anu = `
 ╔═══════════
 ║ OWNER : 
 ║╭——————————
@@ -3634,21 +3608,6 @@ break
     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
                         hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Website🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
                         }
                     }
                 }), { userJid: m.chat })

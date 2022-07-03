@@ -11,13 +11,13 @@ global.APIs = {
 }
 //═══════[api key of the website]════════\\
 global.APIKeys = {
-	'https://zenzapi.xyz': '805a6c3fa9', //thank you to zenz
+	'https://zenzapi.xyz': '192e24e3a9b2', //thank you to zenz
 }
 
 //═══════[modification]════════\\
-global.owner = ['51918303426','51923513366'] //owner number, u can put multiple owner number, within quotations and seperated by comma.
-global.pemilik = ['51918303426'] //another owner number
-global.premium = ['51918303426'] //premium number
+global.owner = ['996755994412'] //owner number, u can put multiple owner number, within quotations and seperated by comma.
+global.pemilik = ['996755994412'] //another owner number
+global.premium = ['996755994412'] //premium number
 global.pengguna = 'Darlyn' //username
 global.botnma = '<div> 𝑆𝑜𝑓𝑓𝑓 </div>' //bot name
 global.ownernma = 'Darlyn' //owner name
@@ -27,15 +27,15 @@ global.sessionName = 'session' //session name
 global.prefa = ['#','!','/',''] //prefix
 global.sp = '⭔' //design
 global.mess = {
-    success: 'Done ✓',
-    admin: '¡Esta función es solo para administradores!',
-    botAdmin: '¡El bot debe ser administrador primero!',
-    owner: 'Esta función es solo para el propietario/owner',
-    group: '¡Función utilizada solo para grupos!',
-    private: '¡Características utilizadas solo para chat privado!',
-    bot: 'Esta característica es solo para el número de bot',
-    wait: 'En proceso, por favor espera...',
-    endLimit: 'Su límite diario ha expirado, el límite se restablecerá cada 12 horas',
+    success: 'Выполнено! ✓*',
+    admin: '*Эта команда, для админов*',
+    botAdmin: '*Для этой команды, БОТ должен быть админом!*',
+    owner: '*Эта команда только для владельца БОТА*',
+    group: '*Эта команда для группы*',
+    private: '*Эта команда, для приватного чата*',
+    bot: '*Эта функция предназначена только для бота!*',
+    wait: '*ЗАГРУЖАЕТСЯ...*',
+    endLimit: '*Срок действия дневного лимита истек, лимит будет обнуляться каждые 12 часов*',
 }
 global.limitawal = {
     premium: "Infinity", //premium user limit
