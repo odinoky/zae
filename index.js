@@ -74,14 +74,14 @@ async function startXeonBotInc() {
                 try {
                     ppuser = await XeonBotInc.profilePictureUrl(num, 'image')
                 } catch {
-                    ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+                    ppuser = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
                 }
 
 //═══════[get group dp]════════\\
                 try {
                     ppgroup = await XeonBotInc.profilePictureUrl(anu.id, 'image')
                 } catch {
-                    ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+                    ppgroup = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
                 }
                 
 //═══════[welcome]════════\\
@@ -95,11 +95,11 @@ Tol = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURICom
                     XeonBotInc.sendMessage(anu.id, { image: Kon, contextInfo: { mentionedJid: [num] }, caption: `Welcome to @${num.split("@")[0]}
 Group: ${metadata.subject}
 Description: ${metadata.desc}
-Welcome To Our Comfortable Happy, Sometimes Loud, Usually Messy, Full Of Love, HOME!!`} )
+Добро пожаловать в наш уютный, счастливый, иногда шумный, полную любви ГРУППУ!!!`} )
 } else if (anu.action == 'remove') {
 XeonBotInc.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `Salio : @${num.split("@")[0]} 
 Group : ${metadata.subject}
-I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
+Я не уверен, было это прощанием, но мы будем скучать! Но это не точно🤭` })
                 }
             }
         } catch (err) {
