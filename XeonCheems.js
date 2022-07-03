@@ -792,37 +792,33 @@ Ciee Whats Going On💖👀`
                 await XeonBotInc.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
             }
             break
-	case 'kick': {
+	case 'удалить': {
 		if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
-	case 'add': {
+	case 'добавить': {
 		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
-	case 'promote': {
+	case 'датьадмина': {
 		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
-	case 'demote': {
+	case 'снятьадмина': {
 		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
@@ -844,7 +840,6 @@ Ciee Whats Going On💖👀`
 		case 'setsubject': {
 			 if (!isCreator) throw mess.owner
                 if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
                 await XeonBotInc.groupUpdateSubject(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
@@ -853,7 +848,6 @@ Ciee Whats Going On💖👀`
           case 'setdesc':
 		case 'setdesk': {
                 if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (!text) throw 'Text ?'
                 await XeonBotInc.groupUpdateDescription(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
@@ -897,11 +891,11 @@ let ingfo = `*G R O U P  I N F O*\n\n*Name :* ${groupName}\n*ID Group :* ${m.cha
 ds = await getBuffer(pic)
 XeonBotInc.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
 break
-            case 'tagall': case 'tag': {
+            case 'внимание': case 'tag': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
-let teks = `══✪〘 🍒 Tagall 🍒 〙✪══
+let teks = `══✪〘 🍒 ВАС ВЫЗВАЛ АДМИН 🍒 〙✪══
  
  ➲ *Message : ${q ? q : 'blank'}*\n\n`
                 for (let mem of participants) {
@@ -1093,9 +1087,8 @@ break
             delete vote[m.chat]
             reply('Successfully Deleted Vote Session In This Group')
 	    }
-            break
-               case 'group': 
-               case 'grup': {
+            break 
+               case 'группа': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -1131,7 +1124,7 @@ break
             }
             }
             break
-case 'antilink':
+case 'антиссылка':
 	        if (!m.isGroup) return reply(`This feature only be used in group`)
 			if (!isAdmins) return reply(`This feature could be used by admin only`)
 			if (!isBotAdmins) return reply(`Bot must be admin first`)
@@ -1142,7 +1135,7 @@ case 'antilink':
 						reply('Successfully activated the antilink feature')
 						XeonBotInc.sendMessage(m.chat,  {text: `ALLERT!!! This group has been installed anti-link\nIf you violate then I will kick`})
 					} else if (args[0] === 'off') {
-						if (!isAntiLink) return reply('already deactivated')
+						if (!is) return reply('already deactivated')
 						var ini = antilink.indexOf(m.chat)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./database/antilink.json', JSON.stringify(antilink))
@@ -1196,7 +1189,7 @@ case 'antilink':
             case 'linkgroup': 
             case 'grouplink':
              case 'gclink': 
-             case 'linkgc': {
+             case 'ссылка': {
                 if (!m.isGroup) throw mess.group
                 let response = await XeonBotInc.groupInviteCode(m.chat)
                 XeonBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nLink of: ${groupMetadata.subject} Group`, m, { detectLink: true })
@@ -1214,7 +1207,6 @@ case 'antilink':
                 }
             }
             break
-            case 'delete': 
 		case 'eliminar':
             case 'del': {
                 if (!m.quoted) throw false
