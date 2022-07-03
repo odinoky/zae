@@ -2702,45 +2702,6 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
 break
-case 'менюшка':{
-timestampe = speed();
-latensie = speed() - timestampe
-anu = ``
-const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-templateMessage: {
-hydratedTemplate: {
-hydratedContentText: anu,
-locationMessage: {
-jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-hydratedFooterText: `╭═〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╮
-║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-║ 𝗛ola! ${pushname}
-║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
-║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-╰══〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╯
-┏━━━━━━━━━━━━━━━━━━┓
-┃ [INFO BOT 🔖📍]
-┃≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ 
-┣ ↠ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botnma}
-┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
-┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
-┣ ↠ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : ${os.platform()}
-┗━━━━━━━━━━━━━━━━━━┛`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '🍇All Menu🍇',
-                                    id: `${prefix}allmenu`
-                                }
-                            }]
-                        }
-                    }
-                }), { userJid: m.chat })
-                XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id})
-                }
-break
 case 'command':
 case 'comandos':
 case 'cajon':{
@@ -3136,7 +3097,7 @@ break
             }
 break
   case 'allmenu':
-      case 'all':
+      case 'менюшка':
           case 'menuall': {
   	anu = `┏━━━━━━━━━━━━━━━━━━┓
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
