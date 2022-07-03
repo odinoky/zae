@@ -90,10 +90,10 @@ memb = metadata.participants.length
 
 if (anu.action == 'add') {
     tekswell = `Welcome  ${metadata.subject}]*\n\n*――――――――――――――*\n⤔ *Name*: @${num.split('@')[0]}\n⤔ *Bio*:\n*――――――――――――――*\n\nWelcome 🎊🎊🎉!`
-    ichi.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: tekswell })
+    XeonBotInc.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: tekswell })
     } else if (anu.action == 'remove') {
     teksbye = `Sayonaraa @${num.split("@")[0]} 👋`
-    ichi.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: teksbye })
+    XeonBotInc.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: teksbye })
     }
     }
     } catch (err) {
