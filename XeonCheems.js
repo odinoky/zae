@@ -793,25 +793,25 @@ Ciee Whats Going On💖👀`
             }
             break
 	case 'удалить': {
-		if (!isCreator) throw mess.owner
-		if (!m.isGroup) throw mess.group
-                if (!isAdmins) throw mess.admin
+        if (!m.isGroup) throw mess.group
+        if (!isBotAdmins) throw mess.botAdmin
+        if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'добавить': {
-		 if (!isCreator) throw mess.owner
-		if (!m.isGroup) throw mess.group
-                if (!isAdmins) throw mess.admin
+        if (!m.isGroup) throw mess.group
+        if (!isBotAdmins) throw mess.botAdmin
+        if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'датьадмина': {
-		 if (!isCreator) throw mess.owner
-		if (!m.isGroup) throw mess.group
-                if (!isAdmins) throw mess.admin
+        if (!m.isGroup) throw mess.group
+        if (!isBotAdmins) throw mess.botAdmin
+        if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await XeonBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
@@ -1191,6 +1191,9 @@ case 'антиссылка':
              case 'gclink': 
              case 'ссылка': {
                 if (!m.isGroup) throw mess.group
+                if (!isBotAdmins) throw mess.botAdmin
+                if (!isAdmins) throw mess.admin
+                if (!text) throw 'Enter the enable/disable value, For Example ${prefix}ephemeral enable'
                 let response = await XeonBotInc.groupInviteCode(m.chat)
                 XeonBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nLink of: ${groupMetadata.subject} Group`, m, { detectLink: true })
             }
@@ -2646,23 +2649,6 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 reply(respon)
             }
             break
-case 'owner': 
-case 'creator':
-case 'creador':
-case 'darlyn':
-            {
-            XeonBotInc.sendContact(m.chat, global.pemilik, m)
-            }
-            break
-                    case 'bug': 
-                    case 'report':
-		case 'reportar': {
-                    	if(!text) throw `Enter The Bug Example\n\n${command} Menu Error `
-                    	XeonBotInc.sendMessage(`51918303426@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
-Report Message: ${text}` })
-reply(`Successfully Reported To The Owner\n\nPlease Make Sure The Bug Is Valid, If You Play With This, Use This Feature Again And Again For No Reason, You Will Be Blocked For Sure !`)
-                    }
-                    break 
 case 'tes':
 case 'test':
 case 'alive': 
