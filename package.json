@@ -1,5 +1,5 @@
 {
-  "name": "Darlyn",
+  "name": "zae",
   "version": "1.0.0",
   "description": "Multi device wa bot created by Xeon Bot Inc.",
   "main": "index.js",
@@ -61,10 +61,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DGXeon/CheemsBot-MD.git"
+    "url": "git+https://github.com/odinoky/zae.git"
   },
   "bugs": {
-    "url": "https://github.com/DGXeon/CheemsBot-MD/issues"
+    "url": "https://github.com/odinoky/zae/issues"
   },
-  "homepage": "https://github.com/DGXeon/CheemsBot-MD#readme"
+  "homepage": "https://github.com/odinoky/zae#readme"
 }
