@@ -591,20 +591,6 @@ Please @${m.mentionedJid[0].split`@`[0]} to type accept/reject`
             }
             }
             break
-	    case 'donasi': 
-        case 'donate': 
-        case 'sewabot': 
-        case 'sewa':
-         case 'buypremium': 
-         case 'donate': {
-                XeonBotInc.sendMessage(m.chat, { image: { url: 'https://i.ibb.co/t35HfVx/ALONSOZING.jpg' }, caption: `*Hi bro ${m.pushName}*\n\n Bot Rental Price\n⭔ 250INR Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/51923513366 (Owner)\n\nDonate Me : \n\n⭔ Fampay : https://i.ibb.co/t35HfVx/ALONSOZING.jpg\n⭔ Paytm : https://i.ibb.co/t35HfVx/ALONSOZING.jpg` }, { quoted: m })
-            }
-            break
-            case 'sc': 
-	    case 'script': {
-            reply('Script : https://github.com/darlyn1234/darimi-bot\nDont Forget, dont Forget To Subscribe')
-            }
-            break
             case 'chat': {
                 if (!isCreator) throw mess.owner
                 if (!q) throw 'Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete'
@@ -1249,28 +1235,6 @@ case 'antilink':
                     await sleep(1500)
                     let btn = [{
                                 urlButton: {
-                                    displayText: 'Web App📍',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                callButton: {
-                                    displayText: 'Owner Number👤',
-                                    phoneNumber: '+51 923 513 366'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '📶Bot Status📶',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '🍒Script🍒',
-                                    id: 'sc'
                                 }
                             }]
                       fatihgans = fs.readFileSync('./darlyn.jpg')
@@ -1290,15 +1254,6 @@ case 'antilink':
 		for (let yoi of anu) {
 		    await sleep(1500)
 		    let btn = [{
-                                urlButton: {
-                                    displayText: 'web📍',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: 'owner'
-                                }
                             }]
                       fatihgans = fs.readFileSync('./darlyn.jpg')
                       let txt = `「 ©<div> Darlyn </div>」\n\n${text}`
@@ -2721,45 +2676,24 @@ case 'test':
 case 'alive': 
 case 'bot': 
 case 'robot':{
-                anu = `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼𝓮𝔁]〙══╮
+                anu = `╭═〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╮
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ║ 𝗛ola! ${pushname}
 ║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-║ Creador : Darlyn
-║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-╰══〘•𝑆𝑜𝑓𝑓𝑓 - 𝐵𝑜𝓉  ᶤ🌹 ²〙══╯`
+╰══〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╯`
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
                         hydratedTemplate: {
                             hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
+                            locationMessage: {},
                             hydratedButtons: [{
                                 urlButton: {
-                                    displayText: 'wame📍',
-                                    url: 'https://api.whatsapp.com/send/?phone=51918303426&text=hola%20darlyn%20http://perro-animado-darlyn.web.app'
-                                }
-                            }, {
-                            	urlButton: {
-                                displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
                                 }
                             }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '🍒List Menu🍒',
-                                    id: `${prefix}command`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -2768,9 +2702,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
 break
-case 'list':
-case 'menu': 
-case 'help':{
+case 'менюшка':{
 timestampe = speed();
 latensie = speed() - timestampe
 anu = ``
@@ -2780,49 +2712,27 @@ hydratedTemplate: {
 hydratedContentText: anu,
 locationMessage: {
 jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼𝓮𝔁]〙══╮
+hydratedFooterText: `╭═〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╮
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ║ 𝗛ola! ${pushname}
 ║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-║ Creador : Darlyn
-║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-╰══〘•𝑆𝑜𝑓𝑓𝑓 - 𝐵𝑜𝓉  ᶤ🌹 ²〙══╯
+╰══〘〘🅶🅸🅶🅰🅱🅸🆃〙〙══╯
 ┏━━━━━━━━━━━━━━━━━━┓
 ┃ [INFO BOT 🔖📍]
 ┃≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ 
-┣ ↠ 𝗦𝗽𝗲𝗲𝗱 : ${latensie.toFixed(4)} miliseconds
 ┣ ↠ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botnma}
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
 ┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
 ┣ ↠ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : ${os.platform()}
-┣ ↠ 𝗛𝗼𝘀𝘁 𝗡𝗮𝗺𝗲 : ${os.hostname()}
-┣ ↠ 𝗢𝘄𝗻𝗲𝗿 𝗡𝘂𝗺𝗯𝗲𝗿 : ${global.owner}
 ┗━━━━━━━━━━━━━━━━━━┛`,
                             hydratedButtons: [{
                                 urlButton: {
-                                    displayText: 'wame📍',
-                                    url: 'https://api.whatsapp.com/send/?phone=51918303426&text=hola%20xd'
-                                }
-                            }, {
-                            	urlButton: {
-                                displayText: 'Web App🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
                                 }
                             }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '🍒List Menu🍒',
-                                    id: `${prefix}command`
-                                }
-                                }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -2837,9 +2747,7 @@ case 'cajon':{
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
                     title: `Hi ${pushname}`,
-                    description: `Please Choose The Menu\nWeb: https://appweb-darlyn.vercel.app\n\n`,
                     buttonText: "Menu",
-                    footerText: "© Darlyn",
                     listType: "SINGLE_SELECT",
                     sections: [{
 								"title": "Group Features",
@@ -2966,23 +2874,6 @@ anu = `
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3008,23 +2899,6 @@ case 'downloadmenu': {
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: okemenu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3045,23 +2919,6 @@ case 'downloadmenu': {
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3075,25 +2932,6 @@ case 'randommenu': {
   ⬡ ${prefix}couplepp
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3108,23 +2946,6 @@ case 'funmenu': {
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'YouTube📍',
-                                    url: 'https://youtu.be/imFIX-Wrt3s'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3148,23 +2969,6 @@ case 'voicemenu': {
 `
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3183,23 +2987,6 @@ case 'religionmenukdksoejdjj':
   ⬡ ${prefix}tafsirsurah`
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3241,23 +3028,6 @@ case 'horoscopemenukcodk': {
   ⬡ ${prefix}shio`
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                     templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
                     }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
@@ -3278,25 +3048,6 @@ case 'convertmenu': {
   ⬡ ${prefix}dbinary
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'App Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3318,25 +3069,6 @@ case 'nocategorymenu': {
   ⬡ ${prefix}report (report bug to owner)
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3355,25 +3087,6 @@ case 'databasemenu': {
   ⬡ ${prefix}delmsg
   `
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3387,25 +3100,6 @@ case 'anonymouschatmenu': {
   ⬡ ${prefix}stop ( stop Anonymous chat )
 	`
 	  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3419,25 +3113,6 @@ case 'sistemmenu': {
   ⬡ ${prefix}antiwame On/Off
 `
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3456,25 +3131,6 @@ break
   ⬡ ${prefix}bcall
   `
     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Web🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
@@ -3485,10 +3141,7 @@ break
   	anu = `┏━━━━━━━━━━━━━━━━━━┓
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
 ┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
-┗━━━━━━━━━━━━━━━━━━┛
-|-------------------------|
-⮕ PAGINA WEB:  ☷
-⮕ https://appweb-darlyn.vercel.app 
+┗━━━━━━━━━━━━━━━━━━┛ 
 |-------------------------|
 ╔═══════════
 ║ OWNER : 
@@ -3632,25 +3285,6 @@ break
 ║╰——————————
 ╚═══════════`
     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                            hydratedFooterText: `<div> Darlyn </div>`,
-                            hydratedButtons: [{
-                                urlButton: {
-                                    displayText: 'Website🔖',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: `${prefix}owner`
-                                }
-                            }]
-                        }
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
