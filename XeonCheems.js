@@ -2768,7 +2768,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
 brea
-case 'менюка':{
+case 'менюшка':{
 timestampe = speed();
 latensie = speed() - timestampe
 anu = ``
