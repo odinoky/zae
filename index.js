@@ -88,23 +88,17 @@ async function startXeonBotInc() {
 let nama = await XeonBotInc.getName(num)
 memb = metadata.participants.length
 
-Kon = await getBuffer(`{encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
-
-Tol = await getBuffer(`{encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
-               if (anu.action == 'add') 
-                  {XeonBotInc.sendMessage(anu.id, { image: Kon, contextInfo: { mentionedJid: [num] }, caption: `Welcome to @${num.split("@")[0]}
-Group: ${metadata.subject}
-Description: ${metadata.desc}
-Добро пожаловать в наш уютный, счастливый, иногда шумный, полную любви ГРУППУ!!!`} )
-} else if (anu.action == 'remove') {
-XeonBotInc.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `Salio : @${num.split("@")[0]} 
-Group : ${metadata.subject}
-Я не уверен, было это прощанием, но мы будем скучать! Но это не точно🤭` })
-                }
-            }
-        } catch (err) {
-            console.log(err)
-        }
+if (anu.action == 'add') {
+    tekswell = `Welcome  ${metadata.subject}]*\n\n*――――――――――――――*\n⤔ *Name*: @${num.split('@')[0]}\n⤔ *Bio*:\n*――――――――――――――*\n\nWelcome 🎊🎊🎉!`
+    ichi.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: tekswell })
+    } else if (anu.action == 'remove') {
+    teksbye = `Sayonaraa @${num.split("@")[0]} 👋`
+    ichi.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: teksbye })
+    }
+    }
+    } catch (err) {
+    console.log(err)
+    }
     })
 	
 //═══════[setting]════════\\
