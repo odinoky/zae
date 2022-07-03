@@ -3244,16 +3244,12 @@ break
 ║╰——————————
 ╚═══════════`
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                templateMessage: {
-                    hydratedTemplate: {
                         hydratedContentText: anu,
                         locationMessage: {},
                         hydratedButtons: [{
                             urlButton: {
                             }
                         }]
-                    }
-                }
             }), { userJid: m.chat })
             XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
         }
