@@ -98,11 +98,11 @@ return dDisplay + hDisplay + mDisplay + sDisplay;
 	
 // [target]\\
 	const reply = (teks) => {
-            XeonBotInc.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botnma}`,"body": `Darlyn | 𓈃ּ ៹🍏𝗱𝑎𝙧̲𝘭𝐲̲𝘯̲𐂂!s⁹⁷☻‹𝟹`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./XeonMedia/cheemspic.jpg`),"sourceUrl": "https://appweb-darlyn.vercel.app"}}}, { quoted: m})
+            XeonBotInc.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botnma}`,"body": `Darlyn | 𓈃ּ ៹🍏𝗱𝑎𝙧̲𝘭𝐲̲𝘯̲𐂂!s⁹⁷☻‹𝟹`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./XeonMedia/cheemspic.jpg`),"sourceUrl": "https://wa.me/77072763560"}}}, { quoted: m})
         }
         
         const replay = (teks) => {
-            XeonBotInc.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botnma}`,"body": `Darlyn | 𓈃ּ ៹🍏𝗱𝑎𝙧̲𝘭𝐲̲𝘯̲𐂂!s⁹⁷☻‹𝟹`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./XeonMedia/cheemspic.jpg`),"sourceUrl": "https://appweb-darlyn.vercel.app"}}}, { quoted: m})
+            XeonBotInc.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botnma}`,"body": `Darlyn | 𓈃ּ ៹🍏𝗱𝑎𝙧̲𝘭𝐲̲𝘯̲𐂂!s⁹⁷☻‹𝟹`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./XeonMedia/cheemspic.jpg`),"sourceUrl": "https://wa.me/77072763560"}}}, { quoted: m})
         }
 try {
             let isNumber = x => typeof x === 'number' && !isNaN(x)
@@ -170,7 +170,7 @@ const levelRole = getLevelingLevel(m.sender)
 	if (isAntiLink) 
 if (budy.includes('https://chat.whatsapp.com/')) {
                if (!m.key.fromMe) {
-               reply('*LINK DETECTED*\nWow, how naughty, this group has been installed with Antilink, OK?..,\nGood Bye To You..👋🏻')
+               reply('*LINK DETECTED*\nВау, как озорничать, эту группу поставили в режим Антиссылка, ладно?..,\nДо свидания..👋🏻')
                let sianj = m.sender
                await XeonBotInc.groupParticipantsUpdate(m.chat, [sianj], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                }
@@ -597,7 +597,7 @@ Please @${m.mentionedJid[0].split`@`[0]} to type accept/reject`
         case 'sewa':
          case 'buypremium': 
          case 'donate': {
-                XeonBotInc.sendMessage(m.chat, { image: { url: 'https://i.ibb.co/Lh3xbdx/image.jpg' }, caption: `*Hi bro ${m.pushName}*\n\n Bot Rental Price\n⭔ 250INR Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/51923513366 (Owner)\n\nDonate Me : \n\n⭔ Fampay : https://i.ibb.co/Lh3xbdx/image.jpg\n⭔ Paytm : https://i.ibb.co/Lh3xbdx/image.jpg` }, { quoted: m })
+                XeonBotInc.sendMessage(m.chat, { image: { url: 'https://i.ibb.co/Lh3xbdx/image.jpg' }, caption: `*Hi bro ${m.pushName}*\n\n Bot Rental Price\n⭔ 250INR Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/77072763560 (Owner)\n\nDonate Me : \n\n⭔ Fampay : https://i.ibb.co/Lh3xbdx/image.jpg\n⭔ Paytm : https://i.ibb.co/Lh3xbdx/image.jpg` }, { quoted: m })
             }
             break
             case 'sc': 
@@ -849,9 +849,7 @@ Ciee Whats Going On💖👀`
 		await XeonBotInc.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
-	    case 'setname': 
-		case 'setsubject': {
-			 if (!isCreator) throw mess.owner
+	    case 'сменитьназвание': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -871,32 +869,26 @@ Ciee Whats Going On💖👀`
           case 'setppbot': 
 		case 'setbotpp': {
                 if (!isCreator) throw mess.owner
-                if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
-                if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-                if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
+                if (!quoted) throw `Выбирите изображение, и напишите команд ${prefix + command}`
+                if (!/image/.test(mime)) throw `Выбирите изображение, и напишите команд ${prefix + command}`
+                if (/webp/.test(mime)) throw `Выбирите изображение, и напишите команд ${prefix + command}`
                 let media = await XeonBotInc.downloadAndSaveMediaMessage(quoted)
                 await XeonBotInc.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
                 reply(mess.success)
                 }
                 break
-           case 'setppgroup': 
-		case 'setgrouppp': 
-		case 'setgcpp': 
-		case 'setppgrup':
-		case 'setppgc': {
+           case 'сменитьаватар': {
                 if (!m.isGroup) throw mess.group
                 if (!isAdmins) throw mess.admin
-                if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
-                if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-                if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
+                if (!quoted) throw `Выбирите изображение, и напишите команду  ${prefix + command}`
+                if (!/image/.test(mime)) throw `Выбирите изображение, и напишите команду  ${prefix + command}`
+                if (/webp/.test(mime)) throw `Выбирите изображение, и напишите команд ${prefix + command}`
                 let media = await XeonBotInc.downloadAndSaveMediaMessage(quoted)
                 await XeonBotInc.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
                 reply(mess.success)
                 }
                 break
-case 'grupinfo':
-case 'groupinfo':
-		case 'infogp':
+case 'группинфо':
 try{
  var pic = await XeonBotInc.getProfilePicture(m.chat)
   } catch {
@@ -919,7 +911,7 @@ let teks = `══✪〘 🍒АДМИН ВЫЗЫВАЕТ ВСЕХ🍒 〙✪═�
                 XeonBotInc.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
                 break
-                case 'hidetag': {
+                case 'внимание': {
             if (!m.isGroup) throw mess.group
             if (!isAdmins) throw mess.admin
             XeonBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
@@ -1103,26 +1095,7 @@ break
             reply('Successfully Deleted Vote Session In This Group')
 	    }
             break
-               case 'group': 
-               case 'grup': {
-                if (!m.isGroup) throw mess.group
-                if (!isBotAdmins) throw mess.botAdmin
-                if (!isAdmins) throw mess.admin
-                if (args[0] === 'close'){
-                    await XeonBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(`Successful Closing The Group`)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'open'){
-                    await XeonBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(`Successful Opening The Group`)).catch((err) => reply(jsonformat(err)))
-                } else {
-                let buttons = [
-                        { buttonId: 'group open', buttonText: { displayText: '⭕Open⭕' }, type: 1 },
-                        { buttonId: 'group close', buttonText: { displayText: '🚫Close🚫' }, type: 1 }
-                    ]
-                    await XeonBotInc.sendButtonText(m.chat, buttons, `Group Mode`, XeonBotInc.user.name, m)
-
-             }
-            }
-            break
-            case 'editinfo': {
+            case 'группа': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -1132,10 +1105,10 @@ break
                 await XeonBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Successfully Close Edit Group Info`)).catch((err) => reply(jsonformat(err)))
              } else {
              let buttons = [
-                        { buttonId: 'editinfo open', buttonText: { displayText: '⭕Open⭕' }, type: 1 },
-                        { buttonId: 'editinfo close', buttonText: { displayText: '🚫Close🚫' }, type: 1 }
+                        { buttonId: 'editinfo open', buttonText: { displayText: '⭕открыть⭕' }, type: 1 },
+                        { buttonId: 'editinfo close', buttonText: { displayText: '🚫закрыть🚫' }, type: 1 }
                     ]
-                    await XeonBotInc.sendButtonText(m.chat, buttons, `Mode Edit Info`, XeonBotInc.user.name, m)
+                    await XeonBotInc.sendButtonText(m.chat, buttons, `Выбирите опцию`, XeonBotInc.user.name, m)
 
             }
             }
@@ -1242,32 +1215,6 @@ case 'антиссылка':
                 reply(`Send Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} second`)
                 for (let i of anu) {
                     await sleep(1500)
-                    let btn = [{
-                                urlButton: {
-                                    displayText: 'Web App📍',
-                                    url: 'https://appweb-darlyn.vercel.app'
-                                }
-                            }, {
-                                callButton: {
-                                    displayText: 'Owner Number👤',
-                                    phoneNumber: '+51 923 513 366'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '📶Bot Status📶',
-                                    id: 'ping'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '👤Owner👤',
-                                    id: 'owner'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: '🍒Script🍒',
-                                    id: 'sc'
-                                }
-                            }]
                       fatihgans = fs.readFileSync('./darlyn.jpg')
                       let txt = `「 ✧･𝕕𝑎𝕣𝕝𝑦𝚗ෂ✧･ﾟ: *✧･ﾟ 」\n\n${text}`
                       XeonBotInc.send5ButImg(i, txt, XeonBotInc.user.name, fatihgans, btn)
@@ -2710,23 +2657,22 @@ hydratedTemplate: {
 hydratedContentText: anu,
 locationMessage: {
 jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼𝓮𝔁]〙══╮
+hydratedFooterText: `╭═〘🆅🅰🅽🅸🅻🅺🅰〙══╮
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ║ 𝗛ola! ${pushname}
 ║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-║ Creador : Darlyn
+║ Creador : ✿❀ 🅾🅻🅶🅰 ❀✿
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-╰══〘•𝑆𝑜𝑓𝑓𝑓 - 𝐵𝑜𝓉  ᶤ🌹 ²〙══╯
+╰══〘🆅🅰🅽🅸🅻🅺🅰〙══╯
 ┏━━━━━━━━━━━━━━━━━━┓
-┃ [INFO BOT 🔖📍]
+┃ [ИНФО О БОТЕ 🔖📍]
 ┃≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ 
 ┣ ↠ 𝗦𝗽𝗲𝗲𝗱 : ${latensie.toFixed(4)} miliseconds
 ┣ ↠ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botnma}
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
 ┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
 ┣ ↠ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : ${os.platform()}
-┣ ↠ 𝗛𝗼𝘀𝘁 𝗡𝗮𝗺𝗲 : ${os.hostname()}
 ┣ ↠ 𝗢𝘄𝗻𝗲𝗿 𝗡𝘂𝗺𝗯𝗲𝗿 : ${global.owner}
 ┗━━━━━━━━━━━━━━━━━━┛
 
@@ -2755,26 +2701,24 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ╔═══════════
 ║ GRUPO :
 ║╭——————————
-║├⬡ ${prefix}grupo
-║├⬡ ${prefix}promote 
-║├⬡ ${prefix}demote
-║├⬡ ${prefix}grouplink
-║├⬡ ${prefix}ephemeral [option]
-║├⬡ ${prefix}setgrouppp
-║├⬡ ${prefix}setname [text]
-║├⬡ ${prefix}group [option]
-║├⬡ ${prefix}editinfo [option]
-║├⬡ ${prefix}grupinfo
-║├⬡ ${prefix}add @user
-║├⬡ ${prefix}kick @user
-║├⬡ ${prefix}promote @user
-║├⬡ ${prefix}demote @user
-║├⬡ ${prefix}tagall
+║├⬡ ${prefix}ссылка
+║├⬡ ${prefix}антиссылка [on/off]
+║├⬡ ${prefix}сменитьаватар
+║├⬡ ${prefix}сменитьназвание [текст]
+║├⬡ ${prefix}сменитьописание [текст]
+║├⬡ ${prefix}группа [опции]
+║├⬡ ${prefix}группинфо
+║├⬡ ${prefix}добавить №
+║├⬡ ${prefix}удалить @
+║├⬡ ${prefix}датьадмина @
+║├⬡ ${prefix}снятьадмина @
+║├⬡ ${prefix}обьявление  [текст]
+║├⬡ ${prefix}внимание
+║├⬡ ${prefix}стикер
 ║╰┬> CONVERTIDORES :
 ║╭╯
 ║├⬡ ${prefix}toimage
 ║├⬡ ${prefix}removebg
-║├⬡ ${prefix}sticker
 ║├⬡ ${prefix}emojimix
 ║├⬡ ${prefix}tovideo
 ║├⬡ ${prefix}tofig
@@ -2794,12 +2738,6 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ║├⬡ ${prefix}wallpaper [query]
 ║├⬡ ${prefix}wikimedia [query]
 ║├⬡ ${prefix}ytsearch [query]
-║╰┬> TAG :
-║╭╯
-║├⬡ ${prefix}hidetag
-║├⬡ ${prefix}contag
-║├⬡ ${prefix}sticktag
-║├⬡ ${prefix}tagall
 ║╰┬> RANDOM MENU  :
 ║╭╯
 ║├⬡ ${prefix}coffee
@@ -2847,7 +2785,6 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ║├⬡ ${prefix}ping
 ║├⬡ ${prefix}owner
 ║├⬡ ${prefix}donate
-║├⬡ ${prefix}menu / help / ?
 ║├⬡ ${prefix}delete
 ║├⬡ ${prefix}chatinfo
 ║├⬡ ${prefix}quoted
@@ -2855,20 +2792,6 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ║├⬡ ${prefix}listgc
 ║├⬡ ${prefix}listonline
 ║├⬡ ${prefix}report (report bug to owner)
-║╰┬> DATABASE MENU :
-║╭╯
-║├⬡ ${prefix}setcmd
-║├⬡ ${prefix}listcmd
-║├⬡ ${prefix}lockcmd
-║├⬡ ${prefix}addmsg
-║├⬡ ${prefix}listmsg
-║├⬡ ${prefix}getmsg
-║├⬡ ${prefix}delmsg
-║╰┬> ANTIMENU :
-║╭╯
-║├⬡ ${prefix}antilink [on/off]
-║├⬡ ${prefix}mute [on/off]
-║├⬡ ${prefix}antiwame [on/off]
 ║╰——————————
 `,
     }    
