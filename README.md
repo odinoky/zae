@@ -26,7 +26,7 @@
 </p>
                                                                                                               
 <p align='center'>
-   <a href="https://wa.me/51918303426"><img height="30" src="https://github.com/shanduy/ShanBot/blob/main/temples/d9d97d48264770f85d35c208f279152c.png?raw=true"></a>
+   <a href="https://wa.me/77072763560"><img height="30" src="https://github.com/shanduy/ShanBot/blob/main/temples/d9d97d48264770f85d35c208f279152c.png?raw=true"></a>
 </P>
 
 
