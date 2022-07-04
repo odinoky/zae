@@ -591,6 +591,15 @@ Please @${m.mentionedJid[0].split`@`[0]} to type accept/reject`
             }
             }
             break
+	    case 'donasi': 
+        case 'donate': 
+        case 'sewabot': 
+        case 'sewa':
+         case 'buypremium': 
+         case 'donate': {
+                XeonBotInc.sendMessage(m.chat, { image: { url: 'https://i.ibb.co/t35HfVx/ALONSOZING.jpg' }, caption: `*Hi bro ${m.pushName}*\n\n Bot Rental Price\n⭔ 250INR Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/51923513366 (Owner)\n\nDonate Me : \n\n⭔ Fampay : https://i.ibb.co/t35HfVx/ALONSOZING.jpg\n⭔ Paytm : https://i.ibb.co/t35HfVx/ALONSOZING.jpg` }, { quoted: m })
+            }
+            break
             case 'sc': 
 	    case 'script': {
             reply('Script : https://github.com/darlyn1234/darimi-bot\nDont Forget, dont Forget To Subscribe')
@@ -798,6 +807,7 @@ Ciee Whats Going On💖👀`
             }
             break
 	case 'kick': {
+		if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -806,6 +816,7 @@ Ciee Whats Going On💖👀`
 	}
 	break
 	case 'add': {
+		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -814,6 +825,7 @@ Ciee Whats Going On💖👀`
 	}
 	break
 	case 'promote': {
+		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -822,6 +834,7 @@ Ciee Whats Going On💖👀`
 	}
 	break
 	case 'demote': {
+		 if (!isCreator) throw mess.owner
 		if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -843,6 +856,7 @@ Ciee Whats Going On💖👀`
 	break
 	    case 'setname': 
 		case 'setsubject': {
+			 if (!isCreator) throw mess.owner
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
@@ -1234,6 +1248,30 @@ case 'antilink':
                 for (let i of anu) {
                     await sleep(1500)
                     let btn = [{
+                                urlButton: {
+                                    displayText: 'Web App📍',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                callButton: {
+                                    displayText: 'Owner Number👤',
+                                    phoneNumber: '+51 923 513 366'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '📶Bot Status📶',
+                                    id: 'ping'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: 'owner'
+                                }  
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '🍒Script🍒',
+                                    id: 'sc'
+                                }
                             }]
                       fatihgans = fs.readFileSync('./darlyn.jpg')
                       let txt = `「 ✧･𝕕𝑎𝕣𝕝𝑦𝚗ෂ✧･ﾟ: *✧･ﾟ 」\n\n${text}`
@@ -1252,6 +1290,15 @@ case 'antilink':
 		for (let yoi of anu) {
 		    await sleep(1500)
 		    let btn = [{
+                                urlButton: {
+                                    displayText: 'web📍',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: 'owner'
+                                }
                             }]
                       fatihgans = fs.readFileSync('./darlyn.jpg')
                       let txt = `「 ©<div> Darlyn </div>」\n\n${text}`
@@ -2672,11 +2719,14 @@ reply(`Successfully Reported To The Owner\n\nPlease Make Sure The Bug Is Valid, 
 case 'tes':
 case 'test':
 case 'alive': 
+case 'bot': 
 case 'robot':{
                 anu = `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼𝓮𝔁]〙══╮
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ║ 𝗛ola! ${pushname}
 ║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
+║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+║ Creador : Darlyn
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ╰══〘•𝑆𝑜𝑓𝑓𝑓 - 𝐵𝑜𝓉  ᶤ🌹 ²〙══╯`
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
@@ -2688,11 +2738,28 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'wame📍',
+                                    url: 'https://api.whatsapp.com/send/?phone=51918303426&text=hola%20darlyn%20http://perro-animado-darlyn.web.app'
+                                }
+                            }, {
+                            	urlButton: {
+                                displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
                                 }
                             }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
+                                }
+                                }, {
+                                quickReplyButton: {
+                                    displayText: '🍒List Menu🍒',
+                                    id: `${prefix}command`
+                                }
+                                }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -2701,7 +2768,9 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
 break
-case 'menuu':{
+case 'list':
+case 'menu': 
+case 'help':{
 timestampe = speed();
 latensie = speed() - timestampe
 anu = ``
@@ -2715,6 +2784,8 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ║ 𝗛ola! ${pushname}
 ║ 𝗡𝘂𝗺𝗯𝗲𝗿 : wa.me/${m.sender.split`@`[0]}
+║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+║ Creador : Darlyn
 ║≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 ╰══〘•𝑆𝑜𝑓𝑓𝑓 - 𝐵𝑜𝓉  ᶤ🌹 ²〙══╯
 ┏━━━━━━━━━━━━━━━━━━┓
@@ -2730,11 +2801,28 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ┗━━━━━━━━━━━━━━━━━━┛`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'wame📍',
+                                    url: 'https://api.whatsapp.com/send/?phone=51918303426&text=hola%20xd'
+                                }
+                            }, {
+                            	urlButton: {
+                                displayText: 'Web App🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
                                 }
                             }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
+                                }
+                                }, {
+                                quickReplyButton: {
+                                    displayText: '🍒List Menu🍒',
+                                    id: `${prefix}command`
+                                }
+                                }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -2882,7 +2970,17 @@ anu = `
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
+                                urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
+                                }
                             }]
                         }
                     }
@@ -2914,7 +3012,17 @@ case 'downloadmenu': {
                             hydratedContentText: okemenu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
+                                urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
+                                }
                             }]
                         }
                     }
@@ -2940,9 +3048,19 @@ case 'downloadmenu': {
                         hydratedTemplate: {
                             hydratedContentText: anu,
                             locationMessage: {
-                                jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
-                                hydratedButtons: [{
-                                }]
+                            jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
+                            hydratedButtons: [{
+                                urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
+                                }
+                            }]
                         }
                     }
                 }), { userJid: m.chat })
@@ -2962,8 +3080,16 @@ case 'randommenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -2986,8 +3112,16 @@ case 'funmenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'YouTube📍',
+                                    url: 'https://youtu.be/imFIX-Wrt3s'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3018,8 +3152,16 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3045,8 +3187,16 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3095,8 +3245,16 @@ case 'horoscopemenukcodk': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3125,8 +3283,16 @@ case 'convertmenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'App Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3157,8 +3323,16 @@ case 'nocategorymenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3186,8 +3360,16 @@ case 'databasemenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3210,8 +3392,16 @@ case 'anonymouschatmenu': {
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3234,8 +3424,16 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3263,8 +3461,16 @@ break
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Web🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }
@@ -3280,6 +3486,9 @@ break
 ┣ ↠ 𝐕𝐞𝐥𝐨𝐜𝐢𝐝𝐚𝐝 : ${latensie.toFixed(4)} _Second_
 ┣ ↠ 𝐀𝐜𝐭𝐢𝐯𝐨 : ${runtime(process.uptime())}
 ┗━━━━━━━━━━━━━━━━━━┛
+|-------------------------|
+⮕ PAGINA WEB:  ☷
+⮕ https://appweb-darlyn.vercel.app 
 |-------------------------|
 ╔═══════════
 ║ OWNER : 
@@ -3428,8 +3637,16 @@ break
                             hydratedContentText: anu,
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./XeonMedia/cheemspic.jpg')},
+                            hydratedFooterText: `<div> Darlyn </div>`,
                             hydratedButtons: [{
                                 urlButton: {
+                                    displayText: 'Website🔖',
+                                    url: 'https://appweb-darlyn.vercel.app'
+                                }
+                            }, {
+                                quickReplyButton: {
+                                    displayText: '👤Owner👤',
+                                    id: `${prefix}owner`
                                 }
                             }]
                         }

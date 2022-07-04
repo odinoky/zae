@@ -74,31 +74,37 @@ async function startXeonBotInc() {
                 try {
                     ppuser = await XeonBotInc.profilePictureUrl(num, 'image')
                 } catch {
-                    ppuser = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
+                    ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
 
 //═══════[get group dp]════════\\
                 try {
                     ppgroup = await XeonBotInc.profilePictureUrl(anu.id, 'image')
                 } catch {
-                    ppgroup = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
+                    ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
                 
 //═══════[welcome]════════\\
 let nama = await XeonBotInc.getName(num)
 memb = metadata.participants.length
 
-if (anu.action == 'add') {
-    tekswell = `Welcome  ${metadata.subject}]*\n\n*――――――――――――――*\n⤔ *Name*: @${num.split('@')[0]}\n⤔ *Bio*:\n*――――――――――――――*\n\nWelcome 🎊🎊🎉!`
-    XeonBotInc.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: tekswell })
-    } else if (anu.action == 'remove') {
-    teksbye = `Sayonaraa @${num.split("@")[0]} 👋`
-    XeonBotInc.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: teksbye })
-    }
-    }
-    } catch (err) {
-    console.log(err)
-    }
+Kon = await getBuffer(`https://hardianto.xyz/api/welcome3?profile=${encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/jLPWXbS/ALONSOZING2.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
+
+Tol = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/jLPWXbS/ALONSOZING2.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
+               if (anu.action == 'add') {
+                    XeonBotInc.sendMessage(anu.id, { image: Kon, contextInfo: { mentionedJid: [num] }, caption: `Welcome to @${num.split("@")[0]}
+Group: ${metadata.subject}
+Description: ${metadata.desc}
+Welcome To Our Comfortable Happy, Sometimes Loud, Usually Messy, Full Of Love, HOME!!`} )
+} else if (anu.action == 'remove') {
+XeonBotInc.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `Salio : @${num.split("@")[0]} 
+Group : ${metadata.subject}
+I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
+                }
+            }
+        } catch (err) {
+            console.log(err)
+        }
     })
 	
 //═══════[setting]════════\\
