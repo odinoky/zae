@@ -2753,9 +2753,24 @@ hydratedFooterText: `╭═〘८≛ 𝓓𝓪𝓻𝓵𝔂𝓷 𔐬☆᤻᤻[𝓼
 ┣ ↠ 𝗢𝘄𝗻𝗲𝗿 𝗡𝘂𝗺𝗯𝗲𝗿 : ${global.owner}
 ┗━━━━━━━━━━━━━━━━━━┛`,
                             hydratedButtons: [{
+                                urlButton: {
+                                    displayText: ' ',
+                                    url: ' '
+                                }
+                            }, {
+                            	urlButton: {
+                                displayText: ' ',
+                                    url: ' '
+                                }
+                            }, {
                                 quickReplyButton: {
                                     displayText: '🍇All Menu🍇',
                                     id: `${prefix}allmenu`
+                                }
+                                }, {
+                                quickReplyButton: {
+                                    displayText: '🍒List Menu🍒',
+                                    id: `${prefix}command`
                                 }
                             }]
                         }
@@ -3327,8 +3342,6 @@ break
 ║╰——————————
 ╚═══════════`
     const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                    }
                 }), { userJid: m.chat })
                 XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
