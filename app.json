@@ -1,8 +1,8 @@
 {
   "name": "Darlyn",
   "description": "whatsapp md bot build with nodejs",
-  "repository": "https://github.com/darlyn1234/darimi-bot",
-  "logo": "https://pbs.twimg.com/media/FO7fojOakAAyYgt?format=jpg&name=900x900",
+  "repository": "https://github.com/odinoky/zae",
+  "logo": "https://i.ibb.co/Lh3xbdx/image.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
   "buildpacks": [
     {
