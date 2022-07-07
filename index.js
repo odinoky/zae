@@ -1,114 +1,175 @@
-//═══════[© 2022 Xeon Bot Inc.]════════\\
+/**
+   * Create By Dika Ardnt.
+   * Contact Me on wa.me/6288292024190
+   * Follow https://github.com/DikaArdnt
+*/
 
-//~you can re-upload but tag my channel
-//or put my channel link in the description.
-//~you can recode or copy the codes but give
-//credit.
-//~Thank you to LORD BUDDHA, ME AND MY 
-//FAMILY.
-
-//═══════[modules]════════\\
 require('./config')
-const { default: XeonBotIncConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
+const { default: hisokaConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
+const { Boom } = require('@hapi/boom')
 const fs = require('fs')
+const yargs = require('yargs/yargs')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
-const  { Boom } = require('@hapi/boom')
+const _ = require('lodash')
+const axios = require('axios')
 const PhoneNumber = require('awesome-phonenumber')
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
+
+var low
+try {
+  low = require('lowdb')
+} catch (e) {
+  low = require('./lib/lowdb')
+}
+
+const { Low, JSONFile } = low
+const mongoDB = require('./lib/mongoDB')
 
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 
-async function startXeonBotInc() {
-    let { version, isLatest } = await fetchLatestBaileysVersion()
-    const XeonBotInc = XeonBotIncConnect({
+global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
+global.db = new Low(
+  /https?:\/\//.test(opts['db'] || '') ?
+    new cloudDBAdapter(opts['db']) : /mongodb/.test(opts['db']) ?
+      new mongoDB(opts['db']) :
+      new JSONFile(`src/database.json`)
+)
+global.DATABASE = global.db // Backwards Compatibility
+global.loadDatabase = async function loadDatabase() {
+  if (global.db.READ) return new Promise((resolve) => setInterval(function () { (!global.db.READ ? (clearInterval(this), resolve(global.db.data == null ? global.loadDatabase() : global.db.data)) : null) }, 1 * 1000))
+  if (global.db.data !== null) return
+  global.db.READ = true
+  await global.db.read()
+  global.db.READ = false
+  global.db.data = {
+    users: {},
+    chats: {},
+    database: {},
+    game: {},
+    settings: {},
+    others: {},
+    sticker: {},
+    ...(global.db.data || {})
+  }
+  global.db.chain = _.chain(global.db.data)
+}
+loadDatabase()
+
+// save database every 30seconds
+if (global.db) setInterval(async () => {
+    if (global.db.data) await global.db.write()
+  }, 30 * 1000)
+
+async function startHisoka() {
+    const hisoka = hisokaConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['Darlyn sofff-bot','Safari','1.0.0'],
-        auth: state,
-        version
+        browser: ['Hisoka Multi Device','Safari','1.0.0'],
+        auth: state
     })
 
-    store.bind(XeonBotInc.ev)
-
-    XeonBotInc.ws.on('CB:call', async (json) => {
+    store.bind(hisoka.ev)
+    
+    // anticall auto block
+    hisoka.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
-    let pa7rick = await XeonBotInc.sendContact(callerId, global.owner)
-    XeonBotInc.sendMessage(callerId, { text: `Automatic block system!\nDon't call bot!\nPlease contact the owner to open !`}, { quoted : pa7rick })
-    XeonBotInc.sendMessage(`916909137213@s.whatsapp.net`, {text: `*Report Bot:* Someone Called Bot`})
+    let pa7rick = await hisoka.sendContact(callerId, global.owner)
+    hisoka.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
     await sleep(8000)
-    await XeonBotInc.updateBlockStatus(callerId, "block")
+    await hisoka.updateBlockStatus(callerId, "block")
     }
     })
 
-    XeonBotInc.ev.on('messages.upsert', async chatUpdate => {
+    hisoka.ev.on('messages.upsert', async chatUpdate => {
         //console.log(JSON.stringify(chatUpdate, undefined, 2))
         try {
         mek = chatUpdate.messages[0]
         if (!mek.message) return
         mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
         if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-        if (!XeonBotInc.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+        if (!hisoka.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
         if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
-        m = smsg(XeonBotInc, mek, store)
-        require("./XeonCheems")(XeonBotInc, m, chatUpdate, store)
+        m = smsg(hisoka, mek, store)
+        require("./hisoka")(hisoka, m, chatUpdate, store)
         } catch (err) {
             console.log(err)
         }
     })
+    
+    // Group Update
+    hisoka.ev.on('groups.update', async pea => {
+    //console.log(pea)
+    try {
+    for(let ciko of pea) {
+    // Get Profile Picture Group
+       try {
+       ppgc = await hisoka.profilePictureUrl(ciko.id, 'image')
+       } catch {
+       ppgc = 'https://tinyurl.com/yx93l6da'
+       }
+       let wm_fatih = { url : ppgc }
+       if (ciko.announce == true) {
+       hisoka.send5ButImg(ciko.id, `「 Group Settings Change 」\n\nGroup telah ditutup oleh admin, Sekarang hanya admin yang dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.announce == false) {
+       hisoka.send5ButImg(ciko.id, `「 Group Settings Change 」\n\nGroup telah dibuka oleh admin, Sekarang peserta dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.restrict == true) {
+       hisoka.send5ButImg(ciko.id, `「 Group Settings Change 」\n\nInfo group telah dibatasi, Sekarang hanya admin yang dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.restrict == false) {
+       hisoka.send5ButImg(ciko.id, `「 Group Settings Change 」\n\nInfo group telah dibuka, Sekarang peserta dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
+       } else {
+       hisoka.send5ButImg(ciko.id, `「 Group Settings Change 」\n\nGroup Subject telah diganti menjadi *${ciko.subject}*`, `Group Settings Change Message`, wm_fatih, [])
+     }
+    }
+    } catch (err){
+    console.log(err)
+    }
+    })
 
-    XeonBotInc.ev.on('group-participants.update', async (anu) => {
+    hisoka.ev.on('group-participants.update', async (anu) => {
         console.log(anu)
         try {
-            let metadata = await XeonBotInc.groupMetadata(anu.id)
+            let metadata = await hisoka.groupMetadata(anu.id)
             let participants = anu.participants
             for (let num of participants) {
-//═══════[get profile pic]════════\\
+                // Get Profile Picture User
                 try {
-                    ppuser = await XeonBotInc.profilePictureUrl(num, 'image')
+                    ppuser = await hisoka.profilePictureUrl(num, 'image')
                 } catch {
-                    ppuser = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
+                    ppuser = 'https://tinyurl.com/yx93l6da'
                 }
 
-//═══════[get group dp]════════\\
+                // Get Profile Picture Group
                 try {
-                    ppgroup = await XeonBotInc.profilePictureUrl(anu.id, 'image')
+                    ppgroup = await hisoka.profilePictureUrl(anu.id, 'image')
                 } catch {
-                    ppgroup = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
+                    ppgroup = 'https://tinyurl.com/yx93l6da'
                 }
-                
-//═══════[welcome]════════\\
-let nama = await XeonBotInc.getName(num)
-memb = metadata.participants.length
 
-Kon = await getBuffer(`https://i.ibb.co/Lh3xbdx/image.jpg3?profile=${encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
-
-Tol = await getBuffer(`https://i.ibb.co/Lh3xbdx/image.jpg?profile=${encodeURIComponent(ppuser)}&name=${encodeURIComponent(nama)}&bg=https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`)
-               if (anu.action == 'add') {
-                    XeonBotInc.sendMessage(anu.id, { image: Kon, contextInfo: { mentionedJid: [num] }, caption: `Welcome to @${num.split("@")[0]}
-Group: ${metadata.subject}
-Description: ${metadata.desc}
-Welcome To Our Comfortable Happy, Sometimes Loud, Usually Messy, Full Of Love, HOME!!`} )
-} else if (anu.action == 'remove') {
-XeonBotInc.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `Salio : @${num.split("@")[0]} 
-Group : ${metadata.subject}
-I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
-                }
+                if (anu.action == 'add') {
+                    hisoka.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}` })
+                } else if (anu.action == 'remove') {
+                    hisoka.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split("@")[0]} Leaving To ${metadata.subject}` })
+                } else if (anu.action == 'promote') {
+                    hisoka.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Promote From ${metadata.subject}` })
+                } else if (anu.action == 'demote') {
+                    hisoka.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Demote From ${metadata.subject}` })
+              }
             }
         } catch (err) {
             console.log(err)
         }
     })
 	
-//═══════[setting]════════\\
-    XeonBotInc.decodeJid = (jid) => {
+    // Setting
+    hisoka.decodeJid = (jid) => {
         if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
             let decode = jidDecode(jid) || {}
@@ -116,44 +177,44 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
         } else return jid
     }
     
-    XeonBotInc.ev.on('contacts.update', update => {
+    hisoka.ev.on('contacts.update', update => {
         for (let contact of update) {
-            let id = XeonBotInc.decodeJid(contact.id)
+            let id = hisoka.decodeJid(contact.id)
             if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
         }
     })
 
-    XeonBotInc.getName = (jid, withoutContact  = false) => {
-        id = XeonBotInc.decodeJid(jid)
-        withoutContact = XeonBotInc.withoutContact || withoutContact 
+    hisoka.getName = (jid, withoutContact  = false) => {
+        id = hisoka.decodeJid(jid)
+        withoutContact = hisoka.withoutContact || withoutContact 
         let v
         if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
             v = store.contacts[id] || {}
-            if (!(v.name || v.subject)) v = XeonBotInc.groupMetadata(id) || {}
+            if (!(v.name || v.subject)) v = hisoka.groupMetadata(id) || {}
             resolve(v.name || v.subject || PhoneNumber('+' + id.replace('@s.whatsapp.net', '')).getNumber('international'))
         })
         else v = id === '0@s.whatsapp.net' ? {
             id,
             name: 'WhatsApp'
-        } : id === XeonBotInc.decodeJid(XeonBotInc.user.id) ?
-            XeonBotInc.user :
+        } : id === hisoka.decodeJid(hisoka.user.id) ?
+            hisoka.user :
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
     
-    XeonBotInc.sendContact = async (jid, kon, quoted = '', opts = {}) => {
+    hisoka.sendContact = async (jid, kon, quoted = '', opts = {}) => {
 	let list = []
 	for (let i of kon) {
 	    list.push({
-	    	displayName: await XeonBotInc.getName(i + '@s.whatsapp.net'),
-	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await XeonBotInc.getName(i + '@s.whatsapp.net')}\nFN:${await XeonBotInc.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click To Chat\nitem2.EMAIL;type=INTERNET:GitHub: darlyn1234\nitem2.X-ABLabel:Follow me on Github\nitem3.URL:YouTube: Darlyn uh\nitem3.X-ABLabel:Youtube\nitem4.ADR:;;Peru, Trujillo;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+	    	displayName: await hisoka.getName(i + '@s.whatsapp.net'),
+	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await hisoka.getName(i + '@s.whatsapp.net')}\nFN:${await hisoka.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Ponsel\nitem2.EMAIL;type=INTERNET:okeae2410@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/cak_haho\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Indonesia;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
 	    })
 	}
-	XeonBotInc.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
+	hisoka.sendMessage(jid, { contacts: { displayName: `${list.length} Kontak`, contacts: list }, ...opts }, { quoted })
     }
     
-    XeonBotInc.setStatus = (status) => {
-        XeonBotInc.query({
+    hisoka.setStatus = (status) => {
+        hisoka.query({
             tag: 'iq',
             attrs: {
                 to: '@s.whatsapp.net',
@@ -169,29 +230,142 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
         return status
     }
 	
-    XeonBotInc.public = true
+    hisoka.public = true
 
-    XeonBotInc.serializeM = (m) => smsg(XeonBotInc, m, store)
+    hisoka.serializeM = (m) => smsg(hisoka, m, store)
 
-    XeonBotInc.ev.on('connection.update', async (update) => {
+    hisoka.ev.on('connection.update', async (update) => {
         const { connection, lastDisconnect } = update	    
         if (connection === 'close') {
-        let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
-            if (reason === DisconnectReason.badSession) { console.log(`🦄Bad Session File, Please Delete Session and Scan Again`); process.exit(); }
-            else if (reason === DisconnectReason.connectionClosed) { console.log("🦄Connection closed, Reconnecting...."); startXeonBotInc(); }
-            else if (reason === DisconnectReason.connectionLost) { console.log("🦄Connection Lost from Server, Reconnecting..."); startXeonBotInc(); }
-            else if (reason === DisconnectReason.connectionReplaced) { console.log("🦄Connection Replaced, Another New Session Opened, Please Close Current Session First"); process.exit(); }
-            else if (reason === DisconnectReason.loggedOut) { console.log(`🦄Device Logged Out, Please Delete Session And Scan Again.`); process.exit(); }
-            else if (reason === DisconnectReason.restartRequired) { console.log("🦄Restart Required, Restarting..."); startXeonBotInc(); }
-            else if (reason === DisconnectReason.timedOut) { console.log("🦄Connection TimedOut, Reconnecting..."); startXeonBotInc(); }
-            else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
+        let reason = new Boom(lastDisconnect?.error)?.output.statusCode
+            if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); hisoka.logout(); }
+            else if (reason === DisconnectReason.connectionClosed) { console.log("Connection closed, reconnecting...."); startHisoka(); }
+            else if (reason === DisconnectReason.connectionLost) { console.log("Connection Lost from Server, reconnecting..."); startHisoka(); }
+            else if (reason === DisconnectReason.connectionReplaced) { console.log("Connection Replaced, Another New Session Opened, Please Close Current Session First"); hisoka.logout(); }
+            else if (reason === DisconnectReason.loggedOut) { console.log(`Device Logged Out, Please Scan Again And Run.`); hisoka.logout(); }
+            else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); startHisoka(); }
+            else if (reason === DisconnectReason.timedOut) { console.log("Connection TimedOut, Reconnecting..."); startHisoka(); }
+            else hisoka.end(`Unknown DisconnectReason: ${reason}|${connection}`)
         }
-        console.log('🦄Connected...', update)
+        console.log('Connected...', update)
     })
-    
-    XeonBotInc.ev.on('creds.update', saveState)
+
+    hisoka.ev.on('creds.update', saveState)
 
     // Add Other
+      
+      /** Resize Image
+      *
+      * @param {Buffer} Buffer (Only Image)
+      * @param {Numeric} Width
+      * @param {Numeric} Height
+      */
+      hisoka.reSize = async (image, width, height) => {
+       let jimp = require('jimp')
+       var oyy = await jimp.read(image);
+       var kiyomasa = await oyy.resize(width, height).getBufferAsync(jimp.MIME_JPEG)
+       return kiyomasa
+      }
+      // Siapa yang cita-citanya pakai resize buat keliatan thumbnailnya
+      
+      /** Send Button 5 Location
+       *
+       * @param {*} jid
+       * @param {*} text
+       * @param {*} footer
+       * @param {*} location
+       * @param [*] button
+       * @param {*} options
+       */
+      hisoka.send5ButLoc = async (jid , text = '' , footer = '', lok, but = [], options = {}) =>{
+       let resize = await hisoka.reSize(lok, 300, 150)
+       var template = generateWAMessageFromContent(jid, {
+       "templateMessage": {
+       "hydratedTemplate": {
+       "locationMessage": {
+       "degreesLatitude": 0,
+       "degreesLongitude": 0,
+       "jpegThumbnail": resize
+       },
+       "hydratedContentText": text,
+       "hydratedFooterText": footer,
+       "hydratedButtons": but
+       }
+       }
+       }, options)
+       hisoka.relayMessage(jid, template.message, { messageId: template.key.id })
+      }
+
+      /**
+      *
+      * @param {*} jid
+      * @param {*} url
+      * @param {*} caption
+      * @param {*} quoted
+      * @param {*} options
+      */
+     hisoka.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
+      let mime = '';
+      let res = await axios.head(url)
+      mime = res.headers['content-type']
+      if (mime.split("/")[1] === "gif") {
+     return hisoka.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options}, { quoted: quoted, ...options})
+      }
+      let type = mime.split("/")[0]+"Message"
+      if(mime === "application/pdf"){
+     return hisoka.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options}, { quoted: quoted, ...options })
+      }
+      if(mime.split("/")[0] === "image"){
+     return hisoka.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options}, { quoted: quoted, ...options})
+      }
+      if(mime.split("/")[0] === "video"){
+     return hisoka.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options}, { quoted: quoted, ...options })
+      }
+      if(mime.split("/")[0] === "audio"){
+     return hisoka.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options}, { quoted: quoted, ...options })
+      }
+      }
+
+    /** Send List Messaage
+      *
+      *@param {*} jid
+      *@param {*} text
+      *@param {*} footer
+      *@param {*} title
+      *@param {*} butText
+      *@param [*] sections
+      *@param {*} quoted
+      */
+        hisoka.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '', sects = [], quoted) => {
+        let sections = sects
+        var listMes = {
+        text: text,
+        footer: footer,
+        title: title,
+        buttonText: butText,
+        sections
+        }
+        hisoka.sendMessage(jid, listMes, { quoted: quoted })
+        }
+
+    /** Send Button 5 Message
+     * 
+     * @param {*} jid
+     * @param {*} text
+     * @param {*} footer
+     * @param {*} button
+     * @returns 
+     */
+        hisoka.send5ButMsg = (jid, text = '' , footer = '', but = []) =>{
+        let templateButtons = but
+        var templateMessage = {
+        text: text,
+        footer: footer,
+        templateButtons: templateButtons
+        }
+        hisoka.sendMessage(jid, templateMessage)
+        }
+
     /** Send Button 5 Image
      *
      * @param {*} jid
@@ -202,9 +376,10 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options
      * @returns
      */
-    XeonBotInc.send5ButImg = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
-        let message = await prepareWAMessageMedia({ image: img }, { upload: XeonBotInc.waUploadToServer })
-        var template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+    hisoka.send5ButImg = async (jid , text = '' , footer = '', img, but = [], buff, options = {}) =>{
+        let resize = await hisoka.reSize(buff, 300, 150)
+        let message = await prepareWAMessageMedia({ image: img, jpegThumbnail: resize }, { upload: hisoka.waUploadToServer })
+        var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
         templateMessage: {
         hydratedTemplate: {
         imageMessage: message.imageMessage,
@@ -214,7 +389,61 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
             }
             }
             }), options)
-            XeonBotInc.relayMessage(jid, template.message, { messageId: template.key.id })
+            hisoka.relayMessage(jid, template.message, { messageId: template.key.id })
+    }
+
+    /** Send Button 5 Video
+     *
+     * @param {*} jid
+     * @param {*} text
+     * @param {*} footer
+     * @param {*} Video
+     * @param [*] button
+     * @param {*} options
+     * @returns
+     */
+    hisoka.send5ButVid = async (jid , text = '' , footer = '', vid, but = [], buff, options = {}) =>{
+        let resize = await hisoka.reSize(buff, 300, 150)
+        let message = await prepareWAMessageMedia({ video: vid, jpegThumbnail: resize }, { upload: hisoka.waUploadToServer })
+        var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
+        templateMessage: {
+        hydratedTemplate: {
+        videoMessage: message.videoMessage,
+               "hydratedContentText": text,
+               "hydratedFooterText": footer,
+               "hydratedButtons": but
+            }
+            }
+            }), options)
+            hisoka.relayMessage(jid, template.message, { messageId: template.key.id })
+    }
+
+    /** Send Button 5 Gif
+     *
+     * @param {*} jid
+     * @param {*} text
+     * @param {*} footer
+     * @param {*} Gif
+     * @param [*] button
+     * @param {*} options
+     * @returns
+     */
+    hisoka.send5ButGif = async (jid , text = '' , footer = '', gif, but = [], buff, options = {}) =>{
+        let resize = await hisoka.reSize(buff, 300, 150)
+        let a = [1,2]
+        let b = a[Math.floor(Math.random() * a.length)]
+        let message = await prepareWAMessageMedia({ video: gif, gifPlayback: true, jpegThumbnail: resize, gifAttribution: b}, { upload: hisoka.waUploadToServer })
+        var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
+        templateMessage: {
+        hydratedTemplate: {
+        videoMessage: message.videoMessage,
+               "hydratedContentText": text,
+               "hydratedFooterText": footer,
+               "hydratedButtons": but
+            }
+            }
+            }), options)
+            hisoka.relayMessage(jid, template.message, { messageId: template.key.id })
     }
 
     /**
@@ -226,7 +455,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} quoted 
      * @param {*} options 
      */
-    XeonBotInc.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
+    hisoka.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
         let buttonMessage = {
             text,
             footer,
@@ -234,7 +463,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
             headerType: 2,
             ...options
         }
-        XeonBotInc.sendMessage(jid, buttonMessage, { quoted, ...options })
+        hisoka.sendMessage(jid, buttonMessage, { quoted, ...options })
     }
     
     /**
@@ -245,7 +474,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendText = (jid, text, quoted = '', options) => XeonBotInc.sendMessage(jid, { text: text, ...options }, { quoted })
+    hisoka.sendText = (jid, text, quoted = '', options) => hisoka.sendMessage(jid, { text: text, ...options }, { quoted })
 
     /**
      * 
@@ -256,9 +485,9 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendImage = async (jid, path, caption = '', quoted = '', options) => {
+    hisoka.sendImage = async (jid, path, caption = '', quoted = '', options) => {
 	let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await XeonBotInc.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
+        return await hisoka.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
     }
 
     /**
@@ -270,9 +499,9 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
+    hisoka.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await XeonBotInc.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
+        return await hisoka.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
     }
 
     /**
@@ -284,9 +513,9 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
+    hisoka.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await XeonBotInc.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
+        return await hisoka.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
     }
 
     /**
@@ -297,7 +526,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendTextWithMentions = async (jid, text, quoted, options = {}) => XeonBotInc.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
+    hisoka.sendTextWithMentions = async (jid, text, quoted, options = {}) => hisoka.sendMessage(jid, { text: text, mentions: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net'), ...options }, { quoted })
 
     /**
      * 
@@ -307,7 +536,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
+    hisoka.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -316,7 +545,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
             buffer = await imageToWebp(buff)
         }
 
-        await XeonBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await hisoka.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 
@@ -328,7 +557,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
+    hisoka.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -337,7 +566,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
             buffer = await videoToWebp(buff)
         }
 
-        await XeonBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await hisoka.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 	
@@ -348,7 +577,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} attachExtension 
      * @returns 
      */
-    XeonBotInc.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
+    hisoka.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
         let quoted = message.msg ? message.msg : message
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
@@ -364,7 +593,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
         return trueFileName
     }
 
-    XeonBotInc.downloadMediaMessage = async (message) => {
+    hisoka.downloadMediaMessage = async (message) => {
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
         const stream = await downloadContentFromMessage(message, messageType)
@@ -386,8 +615,8 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
-        let types = await XeonBotInc.getFile(path, true)
+    hisoka.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
+        let types = await hisoka.getFile(path, true)
            let { mime, ext, res, data, filename } = types
            if (res && res.status !== 200 || file.length <= 65536) {
                try { throw { json: JSON.parse(file.toString()) } }
@@ -407,7 +636,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
        else if (/video/.test(mime)) type = 'video'
        else if (/audio/.test(mime)) type = 'audio'
        else type = 'document'
-       await XeonBotInc.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
+       await hisoka.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
        return fs.promises.unlink(pathFile)
        }
 
@@ -419,7 +648,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} options 
      * @returns 
      */
-    XeonBotInc.copyNForward = async (jid, message, forceForward = false, options = {}) => {
+    hisoka.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
 			message.message = message.message && message.message.ephemeralMessage && message.message.ephemeralMessage.message ? message.message.ephemeralMessage.message : (message.message || undefined)
@@ -450,11 +679,11 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
                 }
             } : {})
         } : {})
-        await XeonBotInc.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
+        await hisoka.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
         return waMessage
     }
 
-    XeonBotInc.cMod = (jid, copy, text = '', sender = XeonBotInc.user.id, options = {}) => {
+    hisoka.cMod = (jid, copy, text = '', sender = hisoka.user.id, options = {}) => {
         //let copy = message.toJSON()
 		let mtype = Object.keys(copy.message)[0]
 		let isEphemeral = mtype === 'ephemeralMessage'
@@ -475,7 +704,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
 		if (copy.key.remoteJid.includes('@s.whatsapp.net')) sender = sender || copy.key.remoteJid
 		else if (copy.key.remoteJid.includes('@broadcast')) sender = sender || copy.key.remoteJid
 		copy.key.remoteJid = jid
-		copy.key.fromMe = sender === XeonBotInc.user.id
+		copy.key.fromMe = sender === hisoka.user.id
 
         return proto.WebMessageInfo.fromObject(copy)
     }
@@ -486,7 +715,7 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
      * @param {*} path 
      * @returns 
      */
-    XeonBotInc.getFile = async (PATH, save) => {
+    hisoka.getFile = async (PATH, save) => {
         let res
         let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
         //if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
@@ -506,10 +735,10 @@ I'm not sure if it was a goodbye charm, but it was fun while it lasted` })
 
     }
 
-    return XeonBotInc
+    return hisoka
 }
 
-startXeonBotInc()
+startHisoka()
 
 
 let file = require.resolve(__filename)

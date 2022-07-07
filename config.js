@@ -1,47 +1,47 @@
-//═══════[© 2022 Darlyn Bot Inc.]════════\\
-
-//═══════[modules]════════\\
+/**
+   * Create By Dika Ardnt.
+   * Contact Me on wa.me/6288292024190
+   * Follow https://github.com/DikaArdnt
+*/
 
 const fs = require('fs')
 const chalk = require('chalk')
 
-//═══════[api website]════════\\
+// Website Api
 global.APIs = {
-	zenz: 'https://zenzapi.xyz', //credit zenz, thank you so much bro <3
-}
-//═══════[api key of the website]════════\\
-global.APIKeys = {
-	'https://zenzapi.xyz': '192e24e3a9b2', //thank you to zenz
+	zenz: 'https://zenzapis.xyz',
 }
 
-//═══════[modification]════════\\
-global.owner = ['77072763560','996755994412'] //owner number, u can put multiple owner number, within quotations and seperated by comma.
-global.pemilik = ['77072763560'] //another owner number
-global.premium = ['77072763560'] //premium number
-global.pengguna = '✿❀ 🅾🅻🅶🅰 ❀✿' //username
-global.botnma = '🆅🅰🅽🅸🅻🅺🅰' //bot name
-global.ownernma = '✿❀ 🅾🅻🅶🅰 ❀✿' //owner name
-global.packname = 'СТИКЕРЫ' //sticker package name
-global.author = 'ОТ 🆅🅰🅽🅸🅻🅺🅰' //sticker author name |#⃞＠𝑫𝒂𝒓𝒍𝒚𝒏•𝒎𝒂𝒋𝒐✞𔘓 𒈔⃟🍂𝑫𝒂𝒓𝒍𝒚𝒏🍁⃟𒈔 
-global.sessionName = 'session' //session name
-global.prefa = ['#','!','/',''] //prefix
-global.sp = '⭔' //design
+// Apikey Website Api
+global.APIKeys = {
+	'https://zenzapis.xyz': 'Your Key',
+}
+
+// Other
+global.owner = ['6283167714830','6281382420312','6288292024190']
+global.premium = ['6288292024190']
+global.packname = 'Hisoka Morrow'
+global.author = 'WhatsApp Bot'
+global.sessionName = 'hisoka'
+global.prefa = ['','!','.','🐦','🐤','🗿']
+global.sp = '⭔'
 global.mess = {
-    success: 'Выполнено! ✓*',
-    admin: '*Эта команда, для админов*',
-    botAdmin: '*Для этой команды, БОТ должен быть админом!*',
-    owner: '*Эта команда только для владельца БОТА*',
-    group: '*Эта команда для группы*',
-    private: '*Эта команда, для приватного чата*',
-    bot: '*Эта функция предназначена только для бота!*',
-    wait: '*ЗАГРУЖАЕТСЯ...*',
-    endLimit: '*Срок действия дневного лимита истек, лимит будет обнуляться каждые 12 часов*',
+    success: '✓ Success',
+    admin: 'Fitur Khusus Admin Group!',
+    botAdmin: 'Bot Harus Menjadi Admin Terlebih Dahulu!',
+    owner: 'Fitur Khusus Owner Bot',
+    group: 'Fitur Digunakan Hanya Untuk Group!',
+    private: 'Fitur Digunakan Hanya Untuk Private Chat!',
+    bot: 'Fitur Khusus Pengguna Nomor Bot',
+    wait: 'Loading...',
+    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 global.limitawal = {
-    premium: "Infinity", //premium user limit
-    free: 100 //free user limit
+    premium: "Infinity",
+    free: 100
 }
-global.thumb = fs.readFileSync('./XeonMedia/cheemspic.jpg')
+global.thumb = fs.readFileSync('./lib/hisoka.jpg')
+global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
 
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {

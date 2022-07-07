@@ -1,7 +1,7 @@
 {
-  "name": "zae",
-  "version": "1.0.0",
-  "description": "Multi device wa bot created by Xeon Bot Inc.",
+  "name": "hisoka-morou",
+  "version": "2.3.0",
+  "description": "WhatsApp Using Lib Baileys Multi Device",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -18,7 +18,7 @@
     "bot-md",
     "multi-device"
   ],
-  "author": "Xeon",
+  "author": "Dika Ardnt.",
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/baileys": "^4.2.0",
@@ -34,10 +34,12 @@
     "fs": "0.0.1-security",
     "got": "^11.8.3",
     "g-i-s": "^2.1.6",
-    "google-it": "^1.6.2",
+    "google-it": "^1.6.3",
     "human-readable": "^0.2.1",
     "jimp": "^0.16.1",
     "jsdom": "^16.4.0",
+    "lowdb": "^2.1.0",
+    "mongoose": "^6.2.1",
     "moment-timezone": "^0.5.34",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
@@ -61,10 +63,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/odinoky/zae.git"
+    "url": "git+https://github.com/DikaArdnt/Hisoka-Morou.git"
   },
   "bugs": {
-    "url": "https://github.com/odinoky/zae/issues"
+    "url": "https://github.com/DikaArdnt/Hisoka-Morou/issues"
   },
-  "homepage": "https://github.com/odinoky/zae#readme"
+  "homepage": "https://github.com/DikaArdnt/Hisoka-Morou#readme"
 }

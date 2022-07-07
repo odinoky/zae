@@ -1,27 +1,7 @@
 {
-  "name": "Darlyn",
-  "description": "whatsapp md bot build with nodejs",
-  "repository": "https://github.com/odinoky/zae",
-  "logo": "https://i.ibb.co/Lh3xbdx/image.jpg",
-  "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick"
-    },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
-    }
-  ],
-   "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "free"
-        }
-    }
+	"name": "Hisoka-Morou",
+	"description": "WhatsApp Bot Using Lib Baileys",
+	"repository": "https://github.com/DikaArdnt/Hisoka-Morou",
+	"logo": "https://node-js-sample.herokuapp.com/node.png",
+	"keywords": ["multi-device"]
 }

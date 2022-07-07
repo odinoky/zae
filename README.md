@@ -1,109 +1,101 @@
+# CATATAN ( NOTE )
+Mulai saat ini, script ini tidak akan dilanjutkan lagi, jika ingin menambah sesuatu lebih baik dibuat pribadi aja, malah keren itu lhu punya tapi yang lain kaga jadi lhu bisa jual tu fitur kalo di publik di script ini mungkin kalian akan rugi sendiri, sudah susah-susah bikin code tapi malah dijual Ama yang cuma modal nyomot doang & dibuat konten yt, yutuber untung yang buat kaga, tapi terserah kalian juga kalo mau pull ya tetep saya ACC
+
+Kalo mau jualan normal aja, jangan sampe nipu atau memberi harapan kosong, contohnya "dijual fitur langkah ada storenya 😱", gabaik itu, mau untung boleh tapi jangan sampe merugikan orang lain 
+
+Best Regards. Hisoka
+
+# Hisoka-Morou
+Script WhatsApp Bot Multi Device
+
+## NOTE
+This Script is for everyone, not for Sale. Jika dijual neraka menunggumu brother !
+
 <p align="center">
-<img src="https://github.com/darlyn1234/sofff3/blob/master/dararchivos/imagen/sofff.jpg" alt="jpg" width="400" height="400"/>
+	<img src="https://telegra.ph/file/09cc0981ccf07754d0af6.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<p align="center">
-    <img
-        src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white" />
-    <img
-        src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
-</p>
+<h1 align="center">Hisoka-Morou</h1>
 
-<p align="center">
-<a href="https://github.com/darlyn1234"><img title="Creador" src="https://img.shields.io/badge/Author-Darlyn-purple.svg?style=for-the-badge&logo=github"></a>
-</p>
+This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
 
-<p align="center">
-  <a href="https://www.youtube.com/"><img src="https://img.shields.io/badge/YouTube-DARLYN IWI-ff0000?style=for-the-badge&logo=youtube&logoColor=ff0000&lihttps://youtu.be/3ymwOvzhwHs/n9fUrhPf5-8-8" /></a>
-  <a name=hendra759&label=VIEWS&style=flat-square&color=orange" />
-
-<p align="center">
-</p>
-<p align="center">
-<a href="##"><img title="Bot-By-Darlyn" src="https://img.shields.io/static/v1?label=Lenguaje&message=Espa%C3%B1ol&color=purple"></a>
-</p>
-<p align="center">
-<a href="#"><img title="DAR-BOT" src="https://img.shields.io/static/v1?label=WhatsApp&message=Bot&color=red"></a>
-</p>
-                                                                                                              
-<p align='center'>
-   <a href="https://wa.me/77072763560"><img height="30" src="https://github.com/shanduy/ShanBot/blob/main/temples/d9d97d48264770f85d35c208f279152c.png?raw=true"></a>
-</P>
+## My Project
+* New script to replace this script [`look here`](https://github.com/zhwzein/Killua-Zoldyck) (`Support Legacy or Baileys`)
+* WhatsApp Bot normal [`DikaArdnt/Hisoka-Morrow`](https://github.com/DikaArdnt/Hisoka-Morrow)
+* WhatsApp Bot Multi Device [`DikaArdnt/Hisoka-Morou`](https://github.com/DikaArdnt/Hisoka-Morou)
+* WhatsApp Bot Using Library whatsapp-web.js [`hisoka-waweb.js`](https://github.com/Hisoka-Morrou/hisoka-waweb.js/)
 
 
-# ```Bot Info```
-<p align="center">
-<a href="https://github.com/darlyn1234/followers"><img title="Followers" src="https://img.shields.io/github/followers/darlyn1234?color=red&style=flat-square"></a>
-<a href="https://github.com/darlyn1234/darimi-bot/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/darlyn1234/darimi-bot?color=blue&style=flat-square"></a>
-<a href="https://github.com/darlyn1234/darimi-bot/network/members"><img title="Forks" src="https://img.shields.io/github/forks/darlyn1234/darimi-bot?color=red&style=flat-square"></a>
-<a href="https://github.com/darlyn1234/darimi-bot/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/darlyn1234/darimi-bot?label=Watchers&color=blue&style=flat-square"></a>
-<a href="https://github.com/darlyn1234/darimi-bot"><img title="Open Source" src="https://img.shields.io/badge/Author-Darllyn%20Bot%20Inc.-red?v=103"></a>
-<a href="https://github.com/darlyn1234/darimi-bot/"><img title="Size" src="https://img.shields.io/github/repo-size/darlyn1234/darimi-bot?style=flat-square&color=green"></a>
-<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2darlyn1234%2Fdarimi-bot&count_bg=%2379C83D&title_bg=%23555555&icon=probot.svg&icon_color=%2300FF6D&title=hits&edge_flat=false"/></a>
-<a href="https://github.com/darlyn1234/darimi-bot/graphs/commit-activity"><img height="20" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>&nbsp;&nbsp;
-</p>
-<p align='center'>
-    </p>
+## UNTUK PENGGUNA WINDOWS/RDP
 
-## ` BUILDPACKS`
+* Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
+* Unduh & Instal NodeJS [`Klik Disini`](https://nodejs.org/en/download)
+* Unduh & Instal FFmpeg [`Klik Disini`](https://ffmpeg.org/download.html) (**Jangan Lupa Tambahkan FFmpeg ke variabel lingkungan PATH**)
 
-```
-https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
-https://github.com/clhuang/heroku-buildpack-webp-binaries.git
-https://github.com/DuckyTeam/heroku-buildpack-imagemagick
-heroku/nodejs
-```
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/darlyn1234/darimi-bot/)
-
-# Install Manually 👇
-## `Requirements`
-* [Node.js](https://nodejs.org/en/)
-* [Git](https://git-scm.com/downloads)
-* [FFmpeg](https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2020-12-08-13-03/ffmpeg-n4.3.1-26-gca55240b8c-win64-gpl-4.3.zip)
-* [Libwebp](https://developers.google.com/speed/webp/download)
-* Any text editor
-## `Clone Repo & Installation dependencies`
 ```bash
-git clone https://github.com/darlyn1234/darl-bot.git
-cd darl-bot
-npm start
+git clone https://github.com/DikaArdnt/Hisoka-Morou
+cd Hisoka-Morou
+npm install
 ```
-## `For Termux/Ssh/Ubuntu`
+
+## HOW TO CONNECT TO MONGODB WHEN RUN IN HEROKU
+
+* Create account and database in mongodb atlas [`watch here`](https://youtu.be/rPqRyYJmx2g)
+* when you already have a database, you just need to take mongourl
+* Put mongourl in Procfile `web: node . --db 'mongourl'`
+* Example `web: node . -- db 'Your Mongo URI'`
+
+
+
+## FOR TERMUX/UBUNTU/SSH USER
+
 ```bash
-apt update
-apt upgrade
-pkg update && pkg upgrade
-pkg install bash
-pkg install libwebp
-pkg install git -y
-pkg install nodejs -y 
-pkg install ffmpeg -y 
-pkg install wget
-pkg install imagemagick -y
-git clone https://github.com/darlyn1234/darl-bot
-cd darl-bot
-npm start
+apt update && apt upgrade
+apt install git -y
+apt install nodejs -y
+apt install ffmpeg -y
+git clone https://github.com/DikaArdnt/Hisoka-Morou
+cd Hisoka-Morou
+npm install
 ```
-## `For VPS`
+
+## RECOMMENDED INSTALL ON TERMUX
+
 ```bash
-apt install nodejs 
-apt install git 
-apt apt install ffmpeg 
-apt apt install libwebp 
-apt apt install imagemagick
-apt install bash
-git clone https://github.com/darlyn1234/darl-bot
-cd darl-bot
-npm start
+pkg install yarn
+yarn
 ```
-## `For 24/7 Activation`
+
+## Installing
 ```bash
-npm i -g pm2 && pm2 start index.js && pm2 save && pm2 logs
+$ node .
 ```
 
-## Estadísticas de GitHub
+## ❗ Warning
+WhatsApp bot is still in the development stage, so there are a few bugs
+WhatsApp Connection (BETA, not working perfectly)
 
-![FxMods' github stats](https://github-readme-stats.vercel.app/api?username=darlyn1234&theme=chartreuse-dark&count_private=true&show_icons=true&cache_seconds=1800)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=darlyn1234&theme=chartreuse-dark&layout=compact)](https://github.com/darlyn1234)
+Editing Number Owner & session name in [`config.js`](https://github.com/DikaArdnt/Hisoka-Morou/blob/master/config.js)
+Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing)
 
 
+## Thanks To
+* [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
+* [`Nurutomo`](https://github.com/Nurutomo)
+* [`Mhankbarbar`](https://github.com/MhankBarBar)
+* [`Faiz`](https://github.com/FaizBastomi)
+* [`Gimenz`](https://github.com/Gimenz)
+* [`rayy`](https://github.com/rayyreall)
+* [`Fatih Arridho`](https://github.com/FatihArridho)
+* [`zhwzein`](https://github.com/zhwzein)
+* [`CAF-ID`](https://github.com/CAF-ID)
+* [`bintang`](https://github.com/Bintangp02)
+
+```Thanks to all who have participated in the development of this script```
+
+
+License: [MIT](https://en.wikipedia.org/wiki/MIT_License)
+
+Support Me
+* [`Paypal`](https://www.paypal.me/Cakhaho)
+* [`Saweria`](https://saweria.co/DikaArdnt)
