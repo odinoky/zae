@@ -2492,7 +2492,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 					urbae.sendText(from, '3')
 					await sleep(1000)
 					urbae.sendText(from, '2')
-					await sleep(1000)
+					await (1000)
 					urbae.sendText(from, '1')
 					await sleep(1000)
 					urbae.sendText(from, `See y'all later`)

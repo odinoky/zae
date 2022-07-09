@@ -1,5 +1,5 @@
 {
-  "name": "whatsapp-bot",
+  "name": "zae",
   "version": "2.11.0",
   "description": "whatsapp-bot with NodeJS",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Urbaexyz/whatsapp-bot.git"
+    "url": "git+https://github.com/odinoky/zae.git"
   },
   "keywords": [
     "Whatsapp-Bot",
@@ -18,9 +18,9 @@
   "author": "Thoriq Azzikra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Urbaexyz/whatsapp-bot/issues"
+    "url": "https://github.com/odinoky/zae/issues"
   },
-  "homepage": "https://github.com/Urbaexyz/whatsapp-bot",
+  "homepage": "https://github.com/odinoky/zae",
   "dependencies": {
     "@open-wa/wa-automate": "^4.36.6",
     "@phaticusthiccy/open-apis": "^1.6.0",
