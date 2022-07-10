@@ -5,7 +5,7 @@
 */
 
 require('./config')
-const { default: hisokaConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
+const { default: hisokaConnect, useSingleFileAuthState, connectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
@@ -121,7 +121,7 @@ async function startHisoka() {
        try {
        ppgc = await hisoka.profilePictureUrl(ciko.id, 'image')
        } catch {
-       ppgc = 'https://tinyurl.com/yx93l6da'
+       ppgc = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
        }
        let wm_fatih = { url : ppgc }
        if (ciko.announce == true) {
@@ -151,14 +151,14 @@ async function startHisoka() {
                 try {
                     ppuser = await hisoka.profilePictureUrl(num, 'image')
                 } catch {
-                    ppuser = 'https://tinyurl.com/yx93l6da'
+                    ppuser = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
                 }
 
                 // Get Profile Picture Group
                 try {
                     ppgroup = await hisoka.profilePictureUrl(anu.id, 'image')
                 } catch {
-                    ppgroup = 'https://tinyurl.com/yx93l6da'
+                    ppgroup = 'https://i.ibb.co/F3rhjBN/Add-Text-05-22-10-21-04.jpg'
                 }
 
                 if (anu.action == 'add') {
@@ -243,7 +243,7 @@ async function startHisoka() {
     hisoka.serializeM = (m) => smsg(hisoka, m, store)
 
     hisoka.ev.on('connection.update', async (update) => {
-        const { connection, lastDisconnect } = update	    
+        const { connection } = update	    
         if (connection === 'close') {
         let reason = new Boom(lastDisconnect?.error)?.output.statusCode
             if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); hisoka.logout(); }

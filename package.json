@@ -1,5 +1,5 @@
 {
-  "name": "hisoka-morou",
+  "name": "zae",
   "version": "2.4.1",
   "description": "WhatsApp Using Lib Baileys Multi Device",
   "main": "index.js",
@@ -63,10 +63,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DikaArdnt/Hisoka-Morou.git"
+    "url": "git+https://github.com/odinoky/zae.git"
   },
   "bugs": {
-    "url": "https://github.com/DikaArdnt/Hisoka-Morou/issues"
+    "url": "https://github.com/odinoky/zae/issues"
   },
-  "homepage": "https://github.com/DikaArdnt/Hisoka-Morou#readme"
+  "homepage": "https://github.com/odinoky/zae#readme"
 }
